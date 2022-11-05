@@ -1,12 +1,11 @@
+# -*- coding: utf-8 -*-
+
 import GetLex
 import os.path
-
-# -*- coding: utf-8 -*-
 
 if __name__ == '__main__':
     directory = 'lexer_tests'
 
-    # запуск и тестирование синтаксического анализатора:
     length = len([name for name in os.listdir(directory) if os.path.isfile(directory + "\\" + name)]) // 2 + 1
     for i in range(1, length):
         test_name = directory + "\\" + str(i) + ".txt"
@@ -24,18 +23,17 @@ if __name__ == '__main__':
             fw.write(str(e))
         fw.close()
 
-        # Вывод итога теста:
         with open(answer_name, "r", encoding="utf-8") as current_file, open(check_name, "r",
                                                                             encoding="utf-8") as correct_file:
             while True:
                 ar = current_file.readline()
                 cr = correct_file.readline()
                 if ar.split() != cr.split():
-                    print(False)
+                    print('Итог проверки: ' + f'{False}')
                     print("Ошибка в выражении " + str(cr))
                     print('Ожидалось: ' + f'{cr}')
                     print('Получено: ' + f'{ar}' + '\n')
                     break
                 if ar == "":
-                    print(f'{True}' + '\n')
+                    print('Итог проверки: ' + f'{True}' + '\n')
                     break

@@ -39,7 +39,7 @@ class GetLex(object):
                 self.num_buf = self.buf[:len(self.buf) - 2]
                 self.num_start_pos = self.lexStartsFrom
                 self.buf = self.buf[len(self.buf) - 2:]
-                self.lexStartsFrom = self.currIndexChar - 2  # потому что ушло на 2 вперед, надо вернуться
+                self.lexStartsFrom = self.currIndexChar - 2
                 return Lexeme.Lexeme(self.num_buf, 'Integer', self.lexStartsFromLine, self.num_start_pos)
             if self.state == "ERR":
                 raise Exception(
@@ -56,7 +56,6 @@ class GetLex(object):
                 self.currIndexChar = 0
                 self.currLine += 1
 
-        # Определение типа лексем:
         if prevState == "ENDSTR":
             self.type = 'String'
         if prevState == "ID":
@@ -79,7 +78,7 @@ class GetLex(object):
         else:
             return Lexeme.Lexeme("", "Empty", self.lexStartsFromLine, self.lexStartsFrom)
 
-    def getLex(self):  # без смещения
+    def getLex(self):
         if self.num_buf:
             return Lexeme.Lexeme(self.num_buf, 'Integer', self.lexStartsFromLine, self.num_start_pos)
         if self.buf:
