@@ -9,7 +9,7 @@ import Semantic
 
 
 if __name__ == '__main__':
-    testtype = '2'
+    testtype = '4'
     starttest = 1
     try:
         testtype = sys.argv[1]
